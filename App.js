@@ -1,14 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TextInput } from 'react-native';
+ import { Examples } from '@shoutem/ui';
+ import { Font } from 'expo';
+ import Signup from './src/components/Signup'
 
 export default class App extends React.Component {
+  constructor(){
+    super();
+      this.state={
+        fontLoaded:false, 
+      };
+  }
+async componentDidMount() {
+  await Font.loadAsync({
+    'Rubik-Regular': require('./src/components/fonts/Rubik-Regular.ttf'),
+    
+  });
+  this.setState({fontLoaded:true});
+}
+  
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+     this.state.fontLoaded ? (
+       <Signup />
+     ):null
     );
   }
 }
