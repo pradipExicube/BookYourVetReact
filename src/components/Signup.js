@@ -6,7 +6,10 @@ import {Button, Input} from '../components/common';
 
 
 export default class Signup extends React.Component {
-
+    static navigationOptions = {
+        title: 'Registration Page',
+        header: null,
+      };
   constructor(props){
     super(props);
     this.state={

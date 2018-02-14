@@ -3,12 +3,10 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import { Examples } from '@shoutem/ui';
  import { Font } from 'expo';
  import Signup from './src/components/Signup';
- import Landing from './src/components/Signup';
- 
-
+ import Landing from './src/components/Landing';
+ //import { Router, Scene } from 'react-native-router-flux';
+ import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux'
  import firebase from "firebase";
-
-
 
 export default class App extends React.Component {
   componentWillMount(){
@@ -40,12 +38,23 @@ async componentDidMount() {
   render() {
     return (
      this.state.fontLoaded ? (
-       <Landing />
+      //  <Landing />
+       <Router>
+       <Stack key="root">
+       <Scene key="Landing" component={Landing} title="Register" />
+       <Scene key="Signup" component={Signup}/>
+       </Stack>
+     </Router>
      ):null
+
+    //  <Router>
+    //      <Scene   title="Signup"   component={Signup}  />
+    //      <Scene  title="Signin"   component={Signin} />     
+    //  </Router>
+    
     );
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -4,19 +4,36 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity } from 're
  import { Font } from 'expo';
  import {Button} from '../components/common';
  import { Image} from '@shoutem/ui';
+import Signup from './Signup';
+import { Router, Scene } from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 
 
 
-export default class App extends React.Component {
+export default class Landing extends React.Component {
+    static navigationOptions = {
+        title: 'Registration Page',
+        header: null,
+      };
     onPress = () => {
-alert("hello");
-      }
+        alert("hello");
+    }
 
+
+    gotoSignup(){
+        Actions.Signup();
+    }
+         
+      
   render() {
     return (
         
+        
+     
+        
     <View style={styles.mainView}>
+   
       <View style={styles.imageView}>
                     <Image
                         styleName="medium-square"
@@ -32,7 +49,7 @@ alert("hello");
                 </View> 
                 
                 <View style={{top:200,height:40, width:230,alignSelf:'center',}}>
-                      <Button onPress={()=> this.openAlert()}>
+                      <Button onPress={()=> this.gotoSignup()}>
                           Sign Up
                       </Button>
                 </View> 
@@ -65,6 +82,7 @@ alert("hello");
         
     </View>
     
+    
     );
   }
 }
@@ -95,9 +113,7 @@ const styles = StyleSheet.create({
         
             flexDirection: 'row',
             justifyContent: 'center',
-            position: 'absolute',
-            // height:  Dimensions.get('window').height-40,
-            // left: 0, 
+            position: 'absolute', 
              top: Dimensions.get('window').height-90, 
              width: Dimensions.get('window').width,
            
@@ -105,19 +121,15 @@ const styles = StyleSheet.create({
     },
     flexView:{
         width: (Dimensions.get('window').width/3),
-        margin:5,
+        margin:4,
          height: 70, 
          backgroundColor: '#fff'
-
     },
     fixText:{
         flex:1,
-        padding:25,
-        //justifyContent: 'center',
+        top:25,
+        alignSelf:'center',
         alignItems: 'center',
         alignSelf:'center',
-        
-        
-
     }
 });
