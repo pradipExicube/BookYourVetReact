@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import { Font } from 'expo';
  import Signup from './src/components/Signup';
  import Landing from './src/components/Landing';
+ import Login from './src/components/Login';
  //import { Router, Scene } from 'react-native-router-flux';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux'
  import firebase from "firebase";
@@ -37,15 +38,17 @@ async componentDidMount() {
   
   render() {
     return (
-     this.state.fontLoaded ? (
-      //  <Landing />
-       <Router>
-       <Stack key="root">
-       <Scene key="Landing" component={Landing} title="Register" />
-       <Scene key="Signup" component={Signup}/>
-       </Stack>
-     </Router>
-     ):null
+      <Login />
+    //  this.state.fontLoaded ? (
+    //   //  <Landing />
+    //    <Router>
+    //    <Stack key="root">
+    //    <Scene key="Landing" component={Landing} title="Register" />
+    //    <Scene key="Signup" component={Signup} title="Register />
+    //    <Scene key="Login" component={Login} />
+    //    </Stack>
+    //  </Router>
+    //  ):null
 
     //  <Router>
     //      <Scene   title="Signup"   component={Signup}  />
