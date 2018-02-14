@@ -4,6 +4,7 @@ import { Font } from 'expo';
 import { Image,TextInput} from '@shoutem/ui';
 import {Button, Input} from '../components/common';
 
+
 export default class Signup extends React.Component {
 
   constructor(props){
@@ -17,12 +18,14 @@ export default class Signup extends React.Component {
       address:'',
       password:''
     }
+   
   }
   
   openAlert(){
      console.log(this.state.name , this.state.email ,this.state.username ,this.state.icnumber ,this.state.hpnumber ,this.state.address ,this.state.password);
     
   }
+  
   render() {
     //const {width,height} = Dimensions.get('window');
     return (
