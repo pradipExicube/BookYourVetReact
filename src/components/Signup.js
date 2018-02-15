@@ -3,11 +3,12 @@ import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Font } from 'expo';
 import { Image,TextInput} from '@shoutem/ui';
 import {Button, Input} from '../components/common';
+import {Actions} from 'react-native-router-flux';
 
 
 export default class Signup extends React.Component {
     static navigationOptions = {
-        title: 'Sign Up',
+       
         header: null,
       };
   constructor(props){
@@ -24,10 +25,9 @@ export default class Signup extends React.Component {
    
   }
   
-  openAlert(){
-     console.log(this.state.name , this.state.email ,this.state.username ,this.state.icnumber ,this.state.hpnumber ,this.state.address ,this.state.password);
-    
-  }
+  gotoHome(){
+    Actions.Home();
+}
   
   render() {
     //const {width,height} = Dimensions.get('window');
@@ -74,7 +74,7 @@ export default class Signup extends React.Component {
                     />
                 </View>
                 <View style={{top:40,height:40, width:200,alignSelf:'center',}}>
-                      <Button onPress={()=> this.openAlert()}>
+                      <Button onPress={()=> this.gotoHome()}>
                           Submit
                       </Button>
                 </View> 

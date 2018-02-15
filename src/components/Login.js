@@ -8,7 +8,7 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity  } from 'r
  //import { Router, Scene } from 'react-native-router-flux';
 export default class Login extends React.Component {
     static navigationOptions = {
-        title: 'Signin Page',
+     
         header: null,
       };
     constructor(props){

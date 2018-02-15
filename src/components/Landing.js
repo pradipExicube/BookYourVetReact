@@ -14,7 +14,7 @@ import {Actions} from 'react-native-router-flux';
 
 export default class Landing extends React.Component {
     static navigationOptions = {
-        title: 'Registration Page',
+        
         header: null,
       };
     onPress = () => {

@@ -5,6 +5,10 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import Signup from './src/components/Signup';
  import Landing from './src/components/Landing';
  import Login from './src/components/Login';
+ import Home from './src/components/Home';
+ //import ListPage from './src/components/ListPage';
+ import AnimalRegister from './src/components/AnimalRegister';
+ 
  //import { Router, Scene } from 'react-native-router-flux';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux'
  import firebase from "firebase";
@@ -29,8 +33,12 @@ export default class App extends React.Component {
      
   }
 async componentDidMount() {
-  await Font.loadAsync({
-    'Rubik-Regular': require('./src/components/fonts/Rubik-Regular.ttf'),
+  await Expo.Font.loadAsync({
+    'Rubik-Regular': require('./src/assets/fonts/Rubik-Regular.ttf'),
+    'Rubik-Bold': require('./src/assets/fonts/Rubik-Bold.ttf'),
+    'Rubik-Black': require('./src/assets/fonts/Rubik-Black.ttf'),
+    'Rubik-Medium': require('./src/assets/fonts/Rubik-Medium.ttf'),
+    'ColabReg': require('./src/assets/fonts/ColabReg.otf')
     
   });
   this.setState({fontLoaded:true});
@@ -38,14 +46,22 @@ async componentDidMount() {
   
   render() {
     return (
-      <Login />
+     
+      //<Login />
+      //  <Landing />
+      this.state.fontLoaded ? (
+      
+       <AnimalRegister />
+     ):null
+      
     //  this.state.fontLoaded ? (
-    //   //  <Landing />
+      
     //    <Router>
     //    <Stack key="root">
-    //    <Scene key="Landing" component={Landing} title="Register" />
-    //    <Scene key="Signup" component={Signup} title="Register />
+    //    <Scene key="Landing" component={Landing} />
+    //    <Scene key="Signup" component={Signup}  />
     //    <Scene key="Login" component={Login} />
+    //    <Scene key="Home" component={Home} />
     //    </Stack>
     //  </Router>
     //  ):null
