@@ -6,7 +6,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import Landing from './src/components/Landing';
  import Login from './src/components/Login';
  import Home from './src/components/Home';
- //import ListPage from './src/components/ListPage';
+ import ListPage from './src/components/ListPage';
  import AnimalRegister from './src/components/AnimalRegister';
  
  //import { Router, Scene } from 'react-native-router-flux';
@@ -51,7 +51,7 @@ async componentDidMount() {
       //  <Landing />
       this.state.fontLoaded ? (
       
-       <AnimalRegister />
+       <ListPage />
      ):null
       
     //  this.state.fontLoaded ? (
