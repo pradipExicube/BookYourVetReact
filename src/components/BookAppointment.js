@@ -4,10 +4,13 @@ import { Font } from 'expo';
 import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title } from '@shoutem/ui';
 //import { Image,TextInput} from '@shoutem/ui';
 import {Button, Input} from '../components/common';
-//import {Actions} from 'react-native-router-flux';
+import {Actions} from 'react-native-router-flux';
 
 
 export default class Signup extends React.Component {
+    static navigationOptions = {
+        header: null,
+      };
     constructor(props){
         super(props);
         this.state={
@@ -21,10 +24,12 @@ export default class Signup extends React.Component {
         }
        
       }
- 
-  
-
-  
+      gotoLanding(){
+          Actions.Landing();
+      }
+      gotoListPage(){
+          Actions.ListPage();
+      }
   render() {
     //const {width,height} = Dimensions.get('window');
     return (
@@ -35,7 +40,7 @@ export default class Signup extends React.Component {
                         <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
                         <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
                     </View>
-                    <TouchableOpacity   onPress={this.onPress} >
+                    <TouchableOpacity   onPress={()=> this.gotoLanding()} >
                         <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
                     </TouchableOpacity>
                 </Divider>
@@ -75,7 +80,7 @@ export default class Signup extends React.Component {
                     />
                 </View>
                 <View style={{top:(Dimensions.get('window').height-120) ,position:'absolute',height:40, width:250,alignSelf:'center'}}>
-                        <Button onPress={()=> this.gotoHome()}>
+                        <Button onPress={()=> this.gotoListPage()}>
                             Request Appointment
                         </Button>
                 </View> 

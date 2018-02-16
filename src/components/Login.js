@@ -4,8 +4,9 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity  } from 'r
  import { Font } from 'expo';
  import { Input,Button} from '../components/common';
  import { Image} from '@shoutem/ui';
+import { Actions } from 'react-native-router-flux';
 
- //import { Router, Scene } from 'react-native-router-flux';
+ import { Router, Scene } from 'react-native-router-flux';
 export default class Login extends React.Component {
     static navigationOptions = {
      
@@ -17,6 +18,12 @@ export default class Login extends React.Component {
           username:'',
           password:''
         }
+    }
+    gotoSignup(){
+      Actions.Signup();
+    }
+    gotoHome(){
+      Actions.Home();
     }
   render() {
     return (
@@ -43,7 +50,7 @@ export default class Login extends React.Component {
     />
 
      <View style={{top:10,height:40, width:200,alignSelf:'center'}}>
-    <Button onPress={()=> this.openAlert()}>
+    <Button onPress={()=> this.gotoHome()}>
     Sign in
     </Button>
    
@@ -51,7 +58,7 @@ export default class Login extends React.Component {
 
          <View style={{flex: 1, flexDirection: 'row', left:15, top:15,alignSelf:'center',width:200}}>
         <View style={{width: 52, height: 50}} >
-        <TouchableOpacity   onPress={this.onPress} >
+        <TouchableOpacity    onPress={()=> this.gotoSignup()} >
                     <Text style={{color:'#fff'}}>Sign Up</Text>
                     </TouchableOpacity>
         </View> 
@@ -62,7 +69,7 @@ export default class Login extends React.Component {
         </View>
         
         <View style={{width:200, height: 50,}} >
-        <TouchableOpacity   onPress={this.onPress} >
+        <TouchableOpacity   >
                     <Text style={{color:'#fff'}}>Forgot Password?</Text>
                     </TouchableOpacity>
         </View>

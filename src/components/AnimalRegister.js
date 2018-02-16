@@ -2,11 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity,Dimensions,Picker} from 'react-native';
 import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title,DropDownMenu } from '@shoutem/ui';
 import {Button, Input} from '../components/common'; 
+import {Actions} from 'react-native-router-flux';
+import { Router, Scene } from 'react-native-router-flux';
 
 
  
 
 export default class AnimalRegister extends React.Component {
+    static navigationOptions = {
+        header: null,
+      };
     constructor(props){
         super(props);
         this.state={
@@ -20,6 +25,15 @@ export default class AnimalRegister extends React.Component {
         }
        
       }
+      logOut(){
+          Actions.Landing();
+      }
+      submitClick(){
+        Actions.ListPage();
+    }
+    cancelClick(){
+        Actions.pop();
+    }
 
   render() {
     let data = [{
@@ -36,7 +50,7 @@ export default class AnimalRegister extends React.Component {
   <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
   <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
   </View>
-  <TouchableOpacity   onPress={this.onPress} >
+  <TouchableOpacity  onPress={()=> this.logOut()} >
   <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
   </TouchableOpacity>
   
@@ -82,12 +96,12 @@ export default class AnimalRegister extends React.Component {
                     />
                     <View style={{flex: 1, flexDirection: 'row', left:5, top:15,alignSelf:'center'}}>
                     <View style={{width: 100, height: 50}} >
-                      <Button onPress={()=> this.openAlert()}>
+                      <Button onPress={()=> this.submitClick()} >
                           Submit
                       </Button>
                       </View>
                       <View style={{width:100, height: 50,}} >
-                      <Button onPress={()=> this.openAlert()}>
+                      <Button onPress={()=> this.cancelClick()}>
                         Cancel
                       </Button>
                       </View>

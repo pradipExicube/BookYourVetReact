@@ -4,8 +4,13 @@ import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title,D
  //import { Examples } from '@shoutem/ui';
  import { Font } from 'expo';
  import {Input,Button} from '../components/common';
+import { Actions } from 'react-native-router-flux';
 
 export default class PetConsult extends React.Component {
+    static navigationOptions = {
+     
+        header: null,
+      };
     constructor(props){
         super(props);
         this.state={
@@ -16,7 +21,9 @@ export default class PetConsult extends React.Component {
          
         }
       }
-
+      gotoLanding(){
+          Actions.Landing();
+      }
   render() {
     return (
 
@@ -28,7 +35,7 @@ export default class PetConsult extends React.Component {
                         <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
                         <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
                     </View>
-                    <TouchableOpacity   onPress={this.onPress} >
+                    <TouchableOpacity   onPress={()=> this.gotoLanding()}>
                         <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
                     </TouchableOpacity>
                 </Divider>

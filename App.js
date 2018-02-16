@@ -51,22 +51,26 @@ async componentDidMount() {
      
       //<Login />
       //  <Landing />
-      this.state.fontLoaded ? (
+    //   this.state.fontLoaded ? (
       
-       <BookAppointment />
-     ):null
-      
-    //  this.state.fontLoaded ? (
-      
-    //    <Router>
-    //    <Stack key="root">
-    //    <Scene key="Landing" component={Landing} />
-    //    <Scene key="Signup" component={Signup}  />
-    //    <Scene key="Login" component={Login} />
-    //    <Scene key="Home" component={Home} />
-    //    </Stack>
-    //  </Router>
+    //    <BookAppointment />
     //  ):null
+      
+     this.state.fontLoaded ? (
+      
+       <Router>
+       <Stack key="root">
+       <Scene key="Landing" component={Landing} />
+       <Scene key="Signup" component={Signup}  />
+       <Scene key="Login" component={Login} />
+       <Scene key="Home" component={Home} />
+       <Scene key="PetConsult" component={PetConsult} />
+       <Scene key="ListPage" component={ListPage} />
+       <Scene key="BookAppointment" component={BookAppointment} />
+       <Scene key="AnimalRegister" component={AnimalRegister} />
+       </Stack>
+     </Router>
+     ):null
 
     //  <Router>
     //      <Scene   title="Signup"   component={Signup}  />

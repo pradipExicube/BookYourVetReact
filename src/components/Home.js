@@ -4,6 +4,8 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity} from 'rea
  import { Button} from '../components/common';
  import {Actions} from 'react-native-router-flux';
  import { Router, Scene } from 'react-native-router-flux';
+ import Landing from '../components/Landing';
+ import BookAppointment from '../components/BookAppointment';
  
  //import { Router, Scene } from 'react-native-router-flux';
 
@@ -12,7 +14,15 @@ export default class Home extends React.Component {
        
         header: null,
       };
-       
+      gotoLanding(){
+          Actions.Landing();
+      }
+      gotoListPage(){
+          Actions.ListPage();
+      }
+      gotoBookAppointment(){
+          Actions.BookAppointment();
+          }
   render() {
     return (
         <View  style={styles.mainView}>
@@ -24,7 +34,7 @@ export default class Home extends React.Component {
   <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
   <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
   </View>
-  <TouchableOpacity   onPress={this.onPress} >
+  <TouchableOpacity   onPress={()=> this.gotoLanding()}  >
   <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
   </TouchableOpacity>
   
@@ -41,7 +51,7 @@ export default class Home extends React.Component {
             source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
         >
             <Tile>
-            <TouchableOpacity   onPress={this.onPress} >
+            <TouchableOpacity    onPress={()=> this.gotoListPage()} >
                 <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>My Pets</Title>
             </TouchableOpacity>
             </Tile>
@@ -56,7 +66,7 @@ export default class Home extends React.Component {
             source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
         >
             <Tile>
-            <TouchableOpacity   onPress={this.onPress} >
+            <TouchableOpacity   onPress={()=> this.gotoBookAppointment()}>
                 <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Book Appointment</Title>
             </TouchableOpacity>
             </Tile>
