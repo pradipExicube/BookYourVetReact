@@ -5,11 +5,7 @@ import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title,D
  import { Font } from 'expo';
  import {Input,Button} from '../components/common';
 
-
-
- 
-
-export default class App extends React.Component {
+export default class PetConsult extends React.Component {
     constructor(props){
         super(props);
         this.state={
@@ -36,6 +32,7 @@ export default class App extends React.Component {
                         <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
                     </TouchableOpacity>
                 </Divider>
+                
                 {/*end Divider*/}
                 {/*start Image*/}
                 <Image
