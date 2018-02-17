@@ -24,6 +24,9 @@ export default class PetConsult extends React.Component {
       gotoLanding(){
           Actions.Landing();
       }
+      pastConsult(){
+          Actions.PastConsult();
+      }
   render() {
     return (
 
@@ -134,7 +137,7 @@ export default class PetConsult extends React.Component {
 
             </View>
             <View style={{top:(Dimensions.get('window').height-120) ,position:'absolute',height:40, width:250,alignSelf:'center'}}>
-                        <Button onPress={()=> this.gotoHome()}>
+                        <Button onPress={()=> this.pastConsult()}>
                             Past Consultant report
                         </Button>
                 </View> 

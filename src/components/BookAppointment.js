@@ -7,7 +7,7 @@ import {Button, Input} from '../components/common';
 import {Actions} from 'react-native-router-flux';
 
 
-export default class Signup extends React.Component {
+export default class BookAppointment extends React.Component {
     static navigationOptions = {
         header: null,
       };

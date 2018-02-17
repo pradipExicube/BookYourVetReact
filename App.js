@@ -10,7 +10,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import AnimalRegister from './src/components/AnimalRegister';
  import PetConsult from './src/components/PetConsult';
  import BookAppointment from './src/components/BookAppointment';
- 
+ import PastConsult from './src/components/PastConsult';
  //import { Router, Scene } from 'react-native-router-flux';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux'
  import firebase from "firebase";
@@ -40,7 +40,8 @@ async componentDidMount() {
     'Rubik-Bold': require('./src/assets/fonts/Rubik-Bold.ttf'),
     'Rubik-Black': require('./src/assets/fonts/Rubik-Black.ttf'),
     'Rubik-Medium': require('./src/assets/fonts/Rubik-Medium.ttf'),
-    'ColabReg': require('./src/assets/fonts/ColabReg.otf')
+    'ColabReg': require('./src/assets/fonts/ColabReg.otf'),
+    
     
   });
   this.setState({fontLoaded:true});
@@ -53,7 +54,7 @@ async componentDidMount() {
       //  <Landing />
     //   this.state.fontLoaded ? (
       
-    //    <BookAppointment />
+    //    <PastConsult />
     //  ):null
       
      this.state.fontLoaded ? (
@@ -68,23 +69,12 @@ async componentDidMount() {
        <Scene key="ListPage" component={ListPage} />
        <Scene key="BookAppointment" component={BookAppointment} />
        <Scene key="AnimalRegister" component={AnimalRegister} />
+       <Scene key="PastConsult" component={PastConsult} />
        </Stack>
      </Router>
      ):null
 
-    //  <Router>
-    //      <Scene   title="Signup"   component={Signup}  />
-    //      <Scene  title="Signin"   component={Signin} />     
-    //  </Router>
-    
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+

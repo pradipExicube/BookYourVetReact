@@ -41,7 +41,7 @@ Actions.Landing();
 </View>
 
 <View style={{top:40}}>
-{/* <ScrollView style={{height:200}}> */}
+ <ScrollView style={{height:Dimensions.get('window').height-130}}>
 <TouchableOpacity onPress={()=> this.listClick()}>
 <Row style={{margin:3}}>
   <Image
@@ -92,11 +92,22 @@ Actions.Landing();
   <Subtitle >Dog Type</Subtitle>
 </Row>
 </TouchableOpacity >
+<TouchableOpacity onPress={()=> this.listClick()}>
+<Row style={{margin:3}}>
+  <Image
+    styleName="small rounded-corners"
+    source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
+  />
+  <Title styleName="top" style={{left:110}}>Dog Name </Title>
+  <Subtitle >Dog Type</Subtitle>
+</Row>
+</TouchableOpacity >
+
+</ScrollView> 
 <ActionButton
   buttonColor="rgba(231,76,60,1)"
   onPress={()=> this.gotoAnimalRegister()}
 />
-{/* </ScrollView> */}
 
 </View>
 
