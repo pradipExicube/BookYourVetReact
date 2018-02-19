@@ -45,27 +45,27 @@ export default class AnimalRegister extends React.Component {
     return (
      <View style={styles.mainView}>
          <View style={{top:30}}>
-<Divider styleName="section-header" style={{height:70}}>
-    <View style={{flex: 1, flexDirection: 'column'}}>
-  <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
-  <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
-  </View>
-  <TouchableOpacity  onPress={()=> this.logOut()} >
-  <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
-  </TouchableOpacity>
-  
-</Divider>
+                <Divider styleName="section-header" style={{height:70}}>
+                                <View style={{flex: 1, flexDirection: 'column'}}>
+                                <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
+                                <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
+                                </View>
+                                <TouchableOpacity  onPress={()=> this.logOut()} >
+                                <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
+                                </TouchableOpacity>
+                            
+             </Divider>
 
-</View>
-<View>
-<View style={styles.imageView}>
+    </View>
+    <View>
+                 <View style={styles.imageView}>
                     <Image
                          styleName="medium-avatar"
                         source={require('../assets/img/logo.png')}
-                    />
-                </View>
+                      />
+                 </View>
 
-</View>
+   </View>
 <View style={{top:60}}>
                     <Input 
                         placeholder="Name"
@@ -107,7 +107,7 @@ export default class AnimalRegister extends React.Component {
                       </View>
 
                       </View>
-                </View> 
+    </View> 
                     
                 
                 

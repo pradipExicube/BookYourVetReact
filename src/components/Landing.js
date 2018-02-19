@@ -104,9 +104,7 @@ const styles = StyleSheet.create({
       top:150,
       alignSelf:'center',
       
-
     },
-    
         footer: {
             flex: 1,
         

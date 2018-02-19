@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, Alert } from 'react-native';
 import { Font } from 'expo';
 import { Image,TextInput} from '@shoutem/ui';
 import {Button, Input} from '../components/common';
 import {Actions} from 'react-native-router-flux';
+import { StackNavigator } from "react-navigation";
+import * as firebase from 'firebase';
 
 
 export default class Signup extends React.Component {
@@ -20,17 +22,69 @@ export default class Signup extends React.Component {
       icnumber:'',
       hpnumber:'',
       address:'',
-      password:''
+      password:'',
     }
    
   }
   
-  gotoHome(){
-    Actions.Home();
-}
-  
+  clickSubmit(){
+      console.log("hiii");
+      if(this.state.name=="" || this.state.username=="" || this.state.email=="" || this.state.icnumber=="" || this.state.hpnumber=="" || this.state.address=="" || this.state.password=="" ||
+         this.state.name==undefined || this.state.username==undefined || this.state.email==undefined || this.state.icnumber==undefined || this.state.hpnumber==undefined || this.state.address==undefined ||
+         this.state.password==undefined){
+
+            if(this.state.name=="" || this.state.name==undefined){
+                alert("please input name");
+            }else if(this.state.username=="" || this.state.username==undefined){
+                alert("please input your username");
+            }else if(this.state.email=="" || this.state.email==undefined){
+                alert("please input your email");
+            }else if(this.state.icnumber=="" || this.state.icnumber==undefined){
+                alert("please input your icnumber");
+            }else if(this.state.hpnumber=="" || this.state.hpnumber==undefined){
+                alert("please input your hpnumber");
+            }else if(this.state.address=="" || this.state.address==undefined){
+                alert("please input your address");
+            }else if(this.state.password=="" || this.state.password==undefined){
+                alert("please input your password");
+            }
+           
+        }
+         
+         else{
+             console.log("else part working");
+
+             let data={
+             name:this.state.name,
+             username:this.state.username,
+             email:this.state.email,
+             icnumber:this.state.icnumber,
+             hpnumber:this.state.hpnumber,
+             address:this.state.address,
+             password:this.state.password
+             }
+             console.log(data);
+         
+      
+    firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((newUser) =>{
+        console.log("hello");
+        console.log(newUser);
+       firebase.database().ref('/users/' + newUser.uid + '/').set(data)
+
+        //    email:this.state.email,
+        //    username:this.state.username,
+        //    login:true,
+        // });
+        // console.log(newUser.uid);
+    });
+
+   
+ }
+
+} 
+    
   render() {
-    //const {width,height} = Dimensions.get('window');
+
     return (
         <View style={styles.mainView}>
             <View style={styles.titleView}>
@@ -74,7 +128,7 @@ export default class Signup extends React.Component {
                     />
                 </View>
                 <View style={{top:40,height:40, width:200,alignSelf:'center',}}>
-                      <Button onPress={()=> this.gotoHome()}>
+                      <Button onPress={()=> this.clickSubmit()}>
                           Submit
                       </Button>
                 </View> 

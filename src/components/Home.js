@@ -29,32 +29,31 @@ export default class Home extends React.Component {
    
     
  <View style={{top:30}}>
-<Divider styleName="section-header" style={{height:70}}>
-    <View style={{flex: 1, flexDirection: 'column'}}>
-  <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
-  <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
-  </View>
-  <TouchableOpacity   onPress={()=> this.gotoLanding()}  >
-  <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
-  </TouchableOpacity>
+     <Divider styleName="section-header" style={{height:70}}>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+                <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
+                <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
+            </View>
+   <TouchableOpacity   onPress={()=> this.gotoLanding()}  >
+          <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
+    </TouchableOpacity>
   
-</Divider>
-<View  style={styles.ownView}>
-
-</View>
+    </Divider>
+        <View  style={styles.ownView}>
+        </View>
 </View>
 
 <View style={{top:30}}>
     <View style={{width:Dimensions.get('window').width,height:((Dimensions.get('window').height-110)/3) }}>
         <ImageBackground
-            styleName="large-banner"
-            source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
-        >
-            <Tile>
-            <TouchableOpacity    onPress={()=> this.gotoListPage()} >
-                <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>My Pets</Title>
-            </TouchableOpacity>
-            </Tile>
+                        styleName="large-banner"
+                        source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
+                        >
+                        <Tile>
+                        <TouchableOpacity    onPress={()=> this.gotoListPage()} >
+                        <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>My Pets</Title>
+                        </TouchableOpacity>
+                        </Tile>
         </ImageBackground>
       </View>
         <View style={{height:5, backgroundColor:'#fff'}}>
@@ -62,33 +61,33 @@ export default class Home extends React.Component {
 
         <View style={{width:Dimensions.get('window').width,height:((Dimensions.get('window').height-110)/3) }}>
         <ImageBackground
-            styleName="large-banner"
-            source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
-        >
-            <Tile>
-            <TouchableOpacity   onPress={()=> this.gotoBookAppointment()}>
-                <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Book Appointment</Title>
-            </TouchableOpacity>
-            </Tile>
+                        styleName="large-banner"
+                        source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
+                        >
+                        <Tile>
+                        <TouchableOpacity   onPress={()=> this.gotoBookAppointment()}>
+                        <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Book Appointment</Title>
+                        </TouchableOpacity>
+                        </Tile>
         </ImageBackground>
       </View>
       <View style={{height:5, backgroundColor:'#fff'}}>
-        </View>
+      </View>
 
         <View style={{width:Dimensions.get('window').width,height:((Dimensions.get('window').height-110)/3) }}>
         <ImageBackground
-            styleName="large-banner"
-            source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
-        >
-            <Tile>
-            <TouchableOpacity   onPress={this.onPress} >
-                <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Reminder / Notification</Title>
-           </TouchableOpacity>
-            </Tile>
+                        styleName="large-banner"
+                        source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
+                        >
+                        <Tile>
+                        <TouchableOpacity   onPress={this.onPress} >
+                        <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Reminder / Notification</Title>
+                        </TouchableOpacity>
+                        </Tile>
         </ImageBackground>
       </View>
       <View style={{height:5, backgroundColor:'#fff'}}>
-        </View>  
+      </View>  
          
 
     </View>

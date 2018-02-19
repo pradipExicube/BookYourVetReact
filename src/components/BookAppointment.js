@@ -35,21 +35,21 @@ export default class BookAppointment extends React.Component {
     return (
         <View style={styles.mainView}>
         <View style={{top:30}}>
-                <Divider styleName="section-header" style={{height:70}}>
-                    <View style={{flex: 1, flexDirection: 'column'}}>
+                        <Divider styleName="section-header" style={{height:70}}>
+                        <View style={{flex: 1, flexDirection: 'column'}}>
                         <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
                         <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
-                    </View>
-                    <TouchableOpacity   onPress={()=> this.gotoLanding()} >
+                        </View>
+                        <TouchableOpacity   onPress={()=> this.gotoLanding()} >
                         <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
-                    </TouchableOpacity>
-                </Divider>
-                </View>
+                        </TouchableOpacity>
+                        </Divider>
+        </View>
                 
                 <View style={{top:40, height:40, width:Dimensions.get('window').width, borderWidth:0.5,borderBottomColor:'#fff', borderTopColor:'#fff'}}>
-                    <Text style={{alignSelf:'center', marginTop:5,color:'#fff',fontSize:20}}>Book Appointment</Text>
+                        <Text style={{alignSelf:'center', marginTop:5,color:'#fff',fontSize:20}}>Book Appointment</Text>
                 </View>
-                <View style={{top:50}}>
+     <View style={{top:50}}>
                     <Input 
                         placeholder="User Name"
                         onChangeText={text=>this.setState({username:text})}
@@ -78,13 +78,13 @@ export default class BookAppointment extends React.Component {
                         placeholder="Additional Comment"
                         onChangeText={text=>this.setState({comment:text})}
                     />
-                </View>
-                <View style={{top:(Dimensions.get('window').height-120) ,position:'absolute',height:40, width:250,alignSelf:'center'}}>
-                        <Button onPress={()=> this.gotoListPage()}>
-                            Request Appointment
-                        </Button>
-                </View> 
-                </View>
+     </View>
+     <View style={{top:(Dimensions.get('window').height-120) ,position:'absolute',height:40, width:250,alignSelf:'center'}}>
+                            <Button onPress={()=> this.gotoListPage()}>
+                                Request Appointment
+                            </Button>
+     </View> 
+     </View>
       
     );
   }

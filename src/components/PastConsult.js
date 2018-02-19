@@ -62,7 +62,7 @@ export default class PastConsult extends React.Component {
                             <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
                             
                         </View>
-                        <View >
+                        <View  style={{top:10}}>
                             <Text style={{fontSize:15}}>Purpose of Visit:</Text>
                             <Text style={{fontSize:15}}>Sickness:</Text>
                             <Text style={{fontSize:15}}>Treatment:</Text>
@@ -75,7 +75,7 @@ export default class PastConsult extends React.Component {
                             <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
                             
                         </View>
-                        <View >
+                        <View style={{top:10}} >
                             <Text style={{fontSize:15}}>Purpose of Visit:</Text>
                             <Text style={{fontSize:15}}>Sickness:</Text>
                             <Text style={{fontSize:15}}>Treatment:</Text>
@@ -87,7 +87,7 @@ export default class PastConsult extends React.Component {
                             <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
                             
                         </View>
-                        <View >
+                        <View  style={{top:10}}>
                             <Text style={{fontSize:15}}>Purpose of Visit:</Text>
                             <Text style={{fontSize:15}}>Sickness:</Text>
                             <Text style={{fontSize:15}}>Treatment:</Text>
@@ -99,7 +99,7 @@ export default class PastConsult extends React.Component {
                             <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
                             
                         </View>
-                        <View >
+                        <View  style={{top:10}}>
                             <Text style={{fontSize:15}}>Purpose of Visit:</Text>
                             <Text style={{fontSize:15}}>Sickness:</Text>
                             <Text style={{fontSize:15}}>Treatment:</Text>
@@ -111,7 +111,7 @@ export default class PastConsult extends React.Component {
                             <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
                             
                         </View>
-                        <View >
+                        <View style={{top:10}}>
                             <Text style={{fontSize:15}}>Purpose of Visit:</Text>
                             <Text style={{fontSize:15}}>Sickness:</Text>
                             <Text style={{fontSize:15}}>Treatment:</Text>
