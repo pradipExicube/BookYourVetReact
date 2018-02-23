@@ -8,11 +8,18 @@ import { StyleSheet, Text, View,TextInput,TouchableOpacity,Dimensions, ScrollVie
  //import { Actions } from 'react-native-router-flux';
  import Landing from '../components/Landing';
  import { Icon } from 'react-native-elements';
- import PetConsult from '../components/PetConsult'
+ import PetConsult from '../components/PetConsult';
+ import * as firebase from 'firebase' 
  
 
 export default class PastConsult extends React.Component {
 
+constructor(props){
+    super(props)
+    this.state={
+        name:'',
+    }
+}
   static navigationOptions = {
      
         header: null,
@@ -23,6 +30,25 @@ export default class PastConsult extends React.Component {
       clickBack(){
           Actions.PetConsult();
       }
+
+
+componentWillMount(){
+    var referance =  firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/');
+    referance.on('value',(snap2)=>{
+       
+      // alert(snap1)
+      //alert(snapshot);
+      if(snap2.val()){
+          if(snap2.val().name){
+            var name = snap2.val().name;
+            this.setState({name:name});
+          }
+          
+          //console.log( this.state.allData)
+      }
+    })
+}
+
   
     
   render() {
@@ -37,11 +63,8 @@ export default class PastConsult extends React.Component {
                            </View>
                            <View style={{flex: 1, flexDirection: 'column'}}>
                            
-                           
-                           
-                           
                            <Caption style={{fontFamily:'ColabReg', fontSize:17,left:15}}>Welcome,</Caption>
-                           <Caption style={{fontFamily:'ColabReg', fontSize:14,left:15}}>Pradip647</Caption> 
+                           <Caption style={{fontFamily:'ColabReg', fontSize:14,left:15}}>{this.state.name}</Caption> 
                            </View>
                            <TouchableOpacity  onPress={()=> this.logOut()} >
                            <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>

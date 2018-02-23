@@ -29,12 +29,13 @@ export default class Login extends React.Component {
       firebase.auth().signInWithEmailAndPassword(this.state.username,this.state.password).then(user=>{
         if(user){
           alert("ready to signin");
+          Actions.Home();
 
         }
         
       })
       .catch(error =>{
-        alert("please put the correct inputs");
+        alert(error);
       })
     }
   render() {
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
   fixing:{
     alignSelf:'center',
    
-   fontSize: 50,
+  //  fontSize: 50,
    top:50
     
   }

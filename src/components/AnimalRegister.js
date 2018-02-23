@@ -4,11 +4,13 @@ import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title,D
 import {Button, Input} from '../components/common'; 
 import {Actions} from 'react-native-router-flux';
 import { Router, Scene } from 'react-native-router-flux';
+import * as firebase from 'firebase';
 
 
  
 
 export default class AnimalRegister extends React.Component {
+    
     static navigationOptions = {
         header: null,
       };
@@ -25,12 +27,63 @@ export default class AnimalRegister extends React.Component {
         }
        
       }
+      
       logOut(){
           Actions.Landing();
       }
       submitClick(){
-        Actions.ListPage();
+        //   alert("working");
+        //   firebase.database().ref('/users/' + firebase.auth().currentUser.uid  + '/mypets/').push({name:"data"});
+        if(this.state.name=="" || this.state.species=="" || this.state.gender=="" || this.state.breed=="" || this.state.dateofbirth=="" || this.state.otherinfo=="" || 
+         this.state.name==undefined || this.state.species==undefined || this.state.gender==undefined || this.state.breed==undefined || this.state.dateofbirth==undefined || this.state.otherinfo==undefined){
+                    
+            if(this.state.name=="" || this.state.name==undefined){
+                alert("please put the valid data");
+            }
+            else if(this.state.species=="" || this.state.species==undefined){
+                alert("please put the valid data");
+
+            }
+            else if(this.state.gender=="" || this.state.gender==undefined){
+                alert("please put the valid data");
+
+            }
+            else if(this.state.breed=="" || this.state.breed==undefined){
+                alert("please put the valid data");
+
+            }
+            else if(this.state.dateofbirth=="" || this.state.dateofbirth==undefined){
+                alert("please put the valid data");
+            }
+            else if(this.state.otherinfo=="" || this.state.otherinfo==undefined){
+                alert("please put the valid data");
+
+            }
+            
+         }
+         else{
+             var data={
+                 name:this.state.name,
+                 species:this.state.species,
+                 gender:this.state.gender,
+                 breed:this.state.breed,
+                 dateofbirth:this.state.dateofbirth,
+                 otherinfo:this.state.otherinfo,
+             }
+             var user=firebase.auth().currentUser;
+            //  console.log(user);
+            //  alert(user.uid);
+            
+               firebase.database().ref('/users/' + firebase.auth().currentUser.uid  + '/mypets/').push(data);   
+
+               alert("successfully submitted")
+         Actions.ListPage();
+         
+            }
+            
     }
+
+    
     cancelClick(){
         Actions.pop();
     }
@@ -42,6 +95,7 @@ export default class AnimalRegister extends React.Component {
         value: 'Female',
       }, 
     ];
+
     return (
      <View style={styles.mainView}>
          <View style={{top:30}}>
@@ -116,6 +170,7 @@ export default class AnimalRegister extends React.Component {
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

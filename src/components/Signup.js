@@ -49,7 +49,9 @@ export default class Signup extends React.Component {
                 alert("please input your password");
             }
            
+           
         }
+       
          
          else{
              console.log("else part working");
@@ -76,7 +78,10 @@ export default class Signup extends React.Component {
         //    login:true,
         // });
         // console.log(newUser.uid);
-    });
+    })
+    .catch((error)=>{
+        alert(error)
+    }); 
 
    
  }

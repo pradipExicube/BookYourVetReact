@@ -61,10 +61,11 @@ async componentDidMount() {
       
        <Router>
        <Stack key="root">
+       <Scene key="Home" component={Home} />
        <Scene key="Landing" component={Landing} />
        <Scene key="Signup" component={Signup}  />
        <Scene key="Login" component={Login} />
-       <Scene key="Home" component={Home} />
+      
        <Scene key="PetConsult" component={PetConsult} />
        <Scene key="ListPage" component={ListPage} />
        <Scene key="BookAppointment" component={BookAppointment} />
