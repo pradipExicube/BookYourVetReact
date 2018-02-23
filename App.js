@@ -11,6 +11,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import PetConsult from './src/components/PetConsult';
  import BookAppointment from './src/components/BookAppointment';
  import PastConsult from './src/components/PastConsult';
+ import Reminder from './src/components/Reminder';
  //import { Router, Scene } from 'react-native-router-flux';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux'
  import firebase from "firebase";
@@ -71,6 +72,7 @@ async componentDidMount() {
        <Scene key="BookAppointment" component={BookAppointment} />
        <Scene key="AnimalRegister" component={AnimalRegister} />
        <Scene key="PastConsult" component={PastConsult} />
+       <Scene key="Reminder" component={Reminder} />
        </Stack>
      </Router>
      ):null

@@ -12,73 +12,90 @@ export default class BookAppointment extends React.Component {
     static navigationOptions = {
         header: null,
       };
+      
+      
     constructor(props){
         super(props);
         this.state={
           username:'',
           date:'',
           time:'',
-          selectpet:'',
+          selectpet:'Select',
           mobileno:'',
           doctor:'',
+          selectDoctor:'Select',
           comment:'',
           name:'',
           allData:[],
-          newData:[]
+          newData:[],
+           values:[
           
-        }
-       
+                { "name": "Dr.Sarkar"},
+                { "name": "Dr.Mukherjee"},
+                {"name": "Dr.Mondal"},
+                {"name": "Dr.Sinha"},
+                {"name": "Dr.Bishu"},
+                {"name": "Dr.SG"},
+            
+        ]
+        } 
       }
       gotoLanding(){
           Actions.Landing();
       }
       clickAppoint(){
-        if(this.state.date=="" || this.state.time=="" || this.state.selectpet=="" || this.state.mobileno=="" || this.state.doctor=="" || this.state.comment=="" || 
-        this.state.date==undefined || this.state.time==undefined || this.state.selectpet==undefined || this.state.mobileno==undefined || this.state.doctor==undefined || this.state.comment==undefined){
+        if(this.state.date=="" || this.state.time=="" || this.state.selectpet=="" || this.state.mobileno=="" || this.state.selectDoctor=="" || this.state.comment=="" || 
+        this.state.date==undefined || this.state.time==undefined || this.state.selectpet==undefined || this.state.mobileno==undefined || this.state.selectDoctor==undefined || this.state.comment==undefined)
+        {
          
      if(this.state.date=="" || this.state.date==undefined){
-         alert("please fill the input box");
+         alert("please fill the input box1");
 
      }
      else if(this.state.time=="" || this.state.time==undefined){
-        alert("please fill the input box");
+        alert("please fill the input box2");
 
      }
-     else if(this.state.selectpet=="" || this.state.selectpet==undefined){
-        alert("please fill the input box");
+    //  else if(this.state.selectedpet=="" || this.state.selectedpet==undefined){
+    //     alert("please fill the input box3");
 
-     }
+    //  }
      else if(this.state.mobileno=="" || this.state.mobileno==undefined){
-        alert("please fill the input box");
+        alert("please fill the input box4");
 
      }
-     else if(this.state.doctor=="" || this.state.doctor==undefined){
-        alert("please fill the input box");
+    //  else if(this.state.doctor=="" || this.state.doctor==undefined){
+    //     alert("please fill the input box5");
 
-     }
+    //  }
      else if(this.state.comment=="" || this.state.comment==undefined){
-        alert("please fill the input box");
+        alert("please fill the input box6");
 
      }
-     
-        }
+    //  alert("hiiii")
+      }
+
         else{
+            alert("hello")
             var data={
                 date:this.state.date,
                 time:this.state.time,
-                selectpet:this.state.selectpet, 
+                selectedpet:this.state.selectpet, 
                 mobileno:this.state.mobileno,
-                doctor:this.state.doctor,
+                doctor:this.state.selectDoctor,
                 comment:this.state.comment,
+                // values:this.state.values
         
             }
+           
            var newUser=firebase.auth().currentUser;
 
                     firebase.database().ref('/users/' + firebase.auth().currentUser.uid  + '/bookappoint/').push(data);  
                     alert("successfully submitted") 
         
-
+                
             firebase.database().ref('/BookAppointment/').push(data);
+            Actions.ListPage();
 
            }
          }
@@ -108,22 +125,19 @@ export default class BookAppointment extends React.Component {
           })
           
           var firebaseData=firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/mypets/');
+          var allPets=[];
           firebaseData.on('value',(snapshot)=>{
             if(snapshot.val()){
                 var data = snapshot.val();
                 for(let key in data){
                     data[key].petid = key;
+                    alert(key);
                     allPets.push(data[key]);
                 }
-                console.log(allPets);
-                alert(allPets[0].name)
-               this.setState({newData:allPets}); 
-                // this.setState({allData:allPets});
-                //alert(allData)
+               this.setState({newData:allPets});  
             }
           })
 
-          var allPets=[];
       
         }
   render() {
@@ -147,9 +161,9 @@ export default class BookAppointment extends React.Component {
                 </View>
      <View style={{top:50}}>
                  
-    
-                   <Text>{this.state.username}</Text>
-                    
+                    <View style={{left:20}}>
+                   <Text style={{color:"#fff"}}>{this.state.username}</Text>
+                    </View>
                     <Input 
                         placeholder="date"
                         onChangeText={text=>this.setState({date:text})}
@@ -157,35 +171,46 @@ export default class BookAppointment extends React.Component {
                     <Input 
                         placeholder="time"
                         onChangeText={text=>this.setState({time:text})}
-                    />
-
-<Picker
-  selectedValue={this.state.doctor}
-  onValueChange={(itemValue, itemIndex) => this.setState({doctor: itemValue})}>
-  <Picker.Item label="Select" value='' />
-  { this.state.newData ? this.state.newData.map((item, index)=>{
-        return<Picker.Item label={item.name} value={item.name} />
-})
-:null
-}
-
-</Picker>
-
-
-
-                   
+    
+                     />
+ 
                     <Input 
                         placeholder="Mobile No"
                         onChangeText={text=>this.setState({mobileno:text})}
                     />
-                    <Input 
-                        placeholder="Preferred Doctor"
-                        onChangeText={text=>this.setState({doctor:text})}
-                    />
+
                     <Input 
                         placeholder="Additional Comment"
                         onChangeText={text=>this.setState({comment:text})}
                     />
+
+<View>
+     <Picker   style={{backgroundColor:"#fff",marginLeft:20,marginRight:20,height:40,marginTop:5}}
+                    selectedValue={this.state.selectpet}
+                    onValueChange={(itemValue, itemIndex) => this.setState({selectpet: itemValue})}>
+                    <Picker.Item label="Select" value='' />
+                    { this.state.newData ? this.state.newData.map((item, index)=>{
+                    return<Picker.Item label={item.name} value={item.name} />
+                    })
+                    :null
+                    }
+
+      </Picker>
+</View>
+<View>
+     <Picker   style={{backgroundColor:"#fff",marginLeft:20,marginRight:20,height:40,marginTop:8}}
+                    selectedValue={this.state.selectDoctor}
+                    onValueChange={(itemValue, itemIndex) => this.setState({selectDoctor: itemValue})}>
+                    <Picker.Item label="Select" value='' />
+                    {  this.state.values.map((item, index)=>{
+                    return<Picker.Item label={item.name} value={item.name} />
+                    })
+                   
+                    }
+
+      </Picker>
+</View>
+
      </View>
      <View style={{top:(Dimensions.get('window').height-100) ,position:'absolute',height:40, width:250,alignSelf:'center'}}>
                             <Button onPress={()=> this.clickAppoint()}>

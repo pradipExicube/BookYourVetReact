@@ -6,8 +6,9 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity} from 'rea
  import { Router, Scene } from 'react-native-router-flux';
  import Landing from '../components/Landing';
  import BookAppointment from '../components/BookAppointment';
+ import Reminder from '../components/Reminder';
  
- //import { Router, Scene } from 'react-native-router-flux';
+//  import { Router, Scene } from 'react-native-router-flux';
 
 export default class Home extends React.Component {
     static navigationOptions = {
@@ -22,6 +23,9 @@ export default class Home extends React.Component {
       }
       gotoBookAppointment(){
           Actions.BookAppointment();
+          }
+          clickReminder(){
+            Actions.Reminder();
           }
   render() {
     return (
@@ -80,7 +84,7 @@ export default class Home extends React.Component {
                         source={{ uri: 'https://shoutem.github.io/img/ui-toolkit/examples/image-10.png' }}
                         >
                         <Tile>
-                        <TouchableOpacity   onPress={this.onPress} >
+                        <TouchableOpacity   onPress={()=>this.clickReminder()} >
                         <Title styleName="md-gutter-bottom" style={{fontFamily:'ColabReg', fontSize:30}}>Reminder / Notification</Title>
                         </TouchableOpacity>
                         </Tile>
