@@ -9,7 +9,7 @@ import *as firebase from 'firebase';
 
 
 
-export default class Landing extends React.Component {
+export default class Reminder extends React.Component {
     static navigationOptions = {
         
         header: null,
@@ -89,10 +89,11 @@ export default class Landing extends React.Component {
 
         { this.state.allData.map((item, index)=>{
 return (
+        <TouchableOpacity>
         <View style={{height:120,width:Dimensions.get('window').width-30, borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
                     
                             <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                                <Text style={{alignSelf:'center'}}>Appointments</Text>
+                                <Text style={{alignSelf:'center'}}>Appointment</Text>
                                 
                             </View>
            
@@ -104,6 +105,8 @@ return (
                                     </View>
                             </View>  
         </View>
+        </TouchableOpacity>
+        
     )
 })
  

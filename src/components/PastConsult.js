@@ -18,6 +18,8 @@ constructor(props){
     super(props)
     this.state={
         name:'',
+        selectedpet:'',
+        doctor:'',
     }
 }
   static navigationOptions = {
@@ -47,6 +49,28 @@ componentWillMount(){
           //console.log( this.state.allData)
       }
     })
+    var allPets=[];
+        
+        var ref =  firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/bookappoint/');
+        ref.on('value',(snapshot)=>{
+         
+          if(snapshot.val()){
+  
+              var data = snapshot.val();
+              for(let key in data){
+                  data[key].petid = key;
+                  
+                  allPets.push(data[key]);
+                  
+              }
+              this.setState({allData:allPets});
+            //   alert(this.state.allData);
+          }
+         
+        })
+
+
+
 }
 
   
@@ -62,7 +86,6 @@ componentWillMount(){
                            </TouchableOpacity>
                            </View>
                            <View style={{flex: 1, flexDirection: 'column'}}>
-                           
                            <Caption style={{fontFamily:'ColabReg', fontSize:17,left:15}}>Welcome,</Caption>
                            <Caption style={{fontFamily:'ColabReg', fontSize:14,left:15}}>{this.state.name}</Caption> 
                            </View>
@@ -80,69 +103,25 @@ componentWillMount(){
     <View style={{top:45}}>
         
                         <ScrollView style={{height:Dimensions.get('window').height-150}}> 
-                        <View style={{height:120,width:Dimensions.get('window').width-30, borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
-                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
-                            
-                        </View>
-                        <View  style={{top:10}}>
-                            <Text style={{fontSize:15}}>Purpose of Visit:</Text>
-                            <Text style={{fontSize:15}}>Sickness:</Text>
-                            <Text style={{fontSize:15}}>Treatment:</Text>
-                        </View>
-                       
-                        </View>
-                         
-                        <View style={{height:120, width:Dimensions.get('window').width-30, borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
-                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
-                            
-                        </View>
-                        <View style={{top:10}} >
-                            <Text style={{fontSize:15}}>Purpose of Visit:</Text>
-                            <Text style={{fontSize:15}}>Sickness:</Text>
-                            <Text style={{fontSize:15}}>Treatment:</Text>
-                        </View>
-                       
-                        </View>
-                        <View style={{height:120,  width:Dimensions.get('window').width-30,borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
-                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
-                            
-                        </View>
-                        <View  style={{top:10}}>
-                            <Text style={{fontSize:15}}>Purpose of Visit:</Text>
-                            <Text style={{fontSize:15}}>Sickness:</Text>
-                            <Text style={{fontSize:15}}>Treatment:</Text>
-                        </View>
-                       
-                        </View>
-                        <View style={{height:120, width:Dimensions.get('window').width-30, borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
-                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
-                            
-                        </View>
-                        <View  style={{top:10}}>
-                            <Text style={{fontSize:15}}>Purpose of Visit:</Text>
-                            <Text style={{fontSize:15}}>Sickness:</Text>
-                            <Text style={{fontSize:15}}>Treatment:</Text>
-                        </View>
-                       
-                        </View>
-                        <View style={{height:120,  width:Dimensions.get('window').width-30,borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
-                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
-                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
-                            
-                        </View>
-                        <View style={{top:10}}>
-                            <Text style={{fontSize:15}}>Purpose of Visit:</Text>
-                            <Text style={{fontSize:15}}>Sickness:</Text>
-                            <Text style={{fontSize:15}}>Treatment:</Text>
-                        </View>
-                       
-                        </View>
+                        { this.state.allData.map((item, index)=>{
                         
-                        
+                       return ( <View style={{height:120,width:Dimensions.get('window').width-30, borderBottomColor:'#fff', backgroundColor:'#fff', borderRadius:10,margin:5,marginLeft:15}}>
+                        <View style={{borderBottomColor:'#000',borderWidth:0.5,borderColor:'#fff',borderRadius:5}}>
+                            
+                            <Text style={{alignSelf:'flex-end'}}>17th feb,2018</Text>
+                            
+                        </View>
+                        <View  style={{top:10}}>
+                            <Text style={{fontSize:15}}>Name:{item.selectedpet}</Text>
+                            <Text style={{fontSize:15}}>Doctor:{item.doctor}</Text>
+                            {/* <Text style={{fontSize:15}}>Treatment:</Text> */}
+                        </View>
+                       
+                        </View>
+                       )
+                    })
+                }
+                    
                         </ScrollView>
      </View>
         

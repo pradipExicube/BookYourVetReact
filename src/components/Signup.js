@@ -63,7 +63,8 @@ export default class Signup extends React.Component {
              icnumber:this.state.icnumber,
              hpnumber:this.state.hpnumber,
              address:this.state.address,
-             password:this.state.password
+             password:this.state.password,
+             type:"user"
              }
              console.log(data);
          
@@ -73,15 +74,22 @@ export default class Signup extends React.Component {
         console.log(newUser);
        firebase.database().ref('/users/' + newUser.uid + '/').set(data)
 
-        //    email:this.state.email,
-        //    username:this.state.username,
-        //    login:true,
-        // });
-        // console.log(newUser.uid);
+        
     })
     .catch((error)=>{
-        alert(error)
+        alert("successfully registered")
     }); 
+
+
+            // firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((newUser) =>{
+            //     console.log("hello");
+            //     console.log(newUser);
+            // firebase.database().ref('/Doctors/' + newUser.uid + '/').set(data)
+
+            // })
+            // .catch((error)=>{
+            //     alert(error)
+            // }); 
 
    
  }

@@ -21,6 +21,12 @@ export default class Login extends React.Component {
           email:'',
         }
     }
+    static defaultProps = {   
+      backgroundColor :"white",
+      titleText:"Forgot Password",
+      submitText:"Send",
+      placeHolderText:"Email Address"
+  };
     gotoSignup(){
       Actions.Signup();
     }
@@ -38,6 +44,35 @@ export default class Login extends React.Component {
         alert(error);
       })
     }
+  //   clickForget(){
+   
+  //       if (this.state.email.trim().length == 0) {
+  //           console.log("Please enter email");
+  //         }else if(this.validateEmail(this.state.email) == false){
+  //           console.log("Please enter valid email");
+  //         }else {
+  //           this.callForgotPassword();
+  //         }
+  //   }
+  //   callForgotPassword(){
+  //      this.setState({spinnerVisible: true});
+  //      WebClient.postRequest(Settings.URL.FORGOT_PASSWORD, {
+  //          "email": this.state.email
+  //      }, (response, error) => {
+  //          this.setState({spinnerVisible: false});
+  //          if (error == null) {
+  //              console.log(response.message);
+  //              this.props.callbackAfterCheckForgotPassword();
+  //            } else {
+  //              console.log(error.message);
+  //          }
+  //      });
+  // }
+
+
+      
+    
+    
   render() {
     return (
   <View  style={styles.mainView}>
@@ -82,7 +117,7 @@ export default class Login extends React.Component {
       </View>
         
        <View style={{width:200, height: 50,}} >
-                    <TouchableOpacity   >
+                    <TouchableOpacity  onPress={()=> this.clickForget()}>
                     <Text style={{color:'#fff'}}>Forgot Password?</Text>
                     </TouchableOpacity>
         </View>

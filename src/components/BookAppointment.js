@@ -131,14 +131,13 @@ export default class BookAppointment extends React.Component {
                 var data = snapshot.val();
                 for(let key in data){
                     data[key].petid = key;
-                    alert(key);
+                    // alert(key);
                     allPets.push(data[key]);
                 }
                this.setState({newData:allPets});  
             }
           })
 
-      
         }
   render() {
     //const {width,height} = Dimensions.get('window');
