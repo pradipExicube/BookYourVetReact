@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity  } from 'react-native';
+import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity, Modal} from 'react-native';
  import { Examples } from '@shoutem/ui';
  import { Font } from 'expo';
  import { Input,Button} from '../components/common';
@@ -19,14 +19,20 @@ export default class Login extends React.Component {
           username:'',
           password:'',
           email:'',
+          modalVisible: false,
+          enterMail:'',
         }
     }
-    static defaultProps = {   
-      backgroundColor :"white",
-      titleText:"Forgot Password",
-      submitText:"Send",
-      placeHolderText:"Email Address"
-  };
+  
+    openModal() {
+      this.setState({modalVisible:true});
+    }
+  
+    closeModal() {
+      this.setState({modalVisible:false});
+    }
+
+
     gotoSignup(){
       Actions.Signup();
     }
@@ -44,37 +50,39 @@ export default class Login extends React.Component {
         alert(error);
       })
     }
-  //   clickForget(){
-   
-  //       if (this.state.email.trim().length == 0) {
-  //           console.log("Please enter email");
-  //         }else if(this.validateEmail(this.state.email) == false){
-  //           console.log("Please enter valid email");
-  //         }else {
-  //           this.callForgotPassword();
-  //         }
-  //   }
-  //   callForgotPassword(){
-  //      this.setState({spinnerVisible: true});
-  //      WebClient.postRequest(Settings.URL.FORGOT_PASSWORD, {
-  //          "email": this.state.email
-  //      }, (response, error) => {
-  //          this.setState({spinnerVisible: false});
-  //          if (error == null) {
-  //              console.log(response.message);
-  //              this.props.callbackAfterCheckForgotPassword();
-  //            } else {
-  //              console.log(error.message);
-  //          }
-  //      });
-  // }
+passwordAlert(msg,status){
+  this.setState({enterMail:''});
+  if(status=='failed'){
+    alert(msg);
+  }
+  else{
+    alert(msg);
+    this.closeModal();
+  }
 
+}
 
+    clickSubmit(){
+      if(this.state.enterMail=="" || this.state.enterMail==undefined || this.state.enterMail==null){
+        this.passwordAlert('Please insert a valid mail id',"failed")
+
+      }
+      else{
+        firebase.auth().sendPasswordResetEmail(this.state.enterMail).then((success)=>{
+        this.passwordAlert("password has been sent to your mail address","success")
+      })
+      .catch((error)=>{
+        this.passwordAlert(error,"failed")
+
+      })
       
-    
+      }
+    }
+   
     
   render() {
     return (
+      <View>
   <View  style={styles.mainView}>
   <View style={styles.fixing}>
           <Text style={{color:'#fff',fontSize: 20}} >Login</Text>
@@ -109,28 +117,100 @@ export default class Login extends React.Component {
                     <TouchableOpacity    onPress={()=> this.gotoSignup()} >
                     <Text style={{color:'#fff'}}>Sign Up</Text>
                     </TouchableOpacity>
+
         </View> 
-
-     <View style={{width:5, height: 50,}} >
-        
-                    <Text style={{color:'#fff'}}>|</Text>
-      </View>
-        
-       <View style={{width:200, height: 50,}} >
-                    <TouchableOpacity  onPress={()=> this.clickForget()}>
-                    <Text style={{color:'#fff'}}>Forgot Password?</Text>
-                    </TouchableOpacity>
-        </View>
-
-      </View>
-         
-
-           
-  </View>
-  </View>
 
    
     
+       <View style={{width:200, height: 50,}} >
+            <TouchableOpacity onPress={() => {this.openModal()}}>
+                    <Text style={{color:'#fff'}}>Forget Password</Text>
+            </TouchableOpacity>      
+       </View>
+      
+      
+      </View>
+            
+  </View>
+  
+  {/* <View>
+       <Modal
+            offset={this.state.offset}
+            open={this.state.open}
+            modalDidOpen={() => console.log('modal did open')}
+            modalDidClose={() => this.setState({open: false})}
+            style={{alignItems: 'center'}}>
+<View>
+     <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+     <TouchableOpacity
+             style={{margin: 5}}
+             onPress={() => this.setState({offset: -100})}>
+               <Text>Move modal up</Text>
+     </TouchableOpacity>
+       <TouchableOpacity
+                 style={{margin: 5}}
+                 onPress={() => this.setState({offset: 0})}>
+                 <Text>Reset modal position</Text>
+         </TouchableOpacity>
+         <TouchableOpacity
+                   style={{margin: 5}}
+                   onPress={() => this.setState({open: false})}>
+                   <Text>Close modal</Text>
+         </TouchableOpacity>
+</View>
+</Modal>
+</View> */}
+
+
+</View>
+<View style={styles.container}>
+          <Modal
+              visible={this.state.modalVisible}
+              animationType={'slide'}
+              onRequestClose={() => this.closeModal()}
+          >
+            <View style={styles.modalContainer}>
+              <View >
+                <View >
+                  <Input 
+                        placeholder="Reset Password"
+                        onChangeText={text=>this.setState({enterMail:text})}
+                  />
+                  </View>
+                      <View style={{flex: 1, flexDirection: 'row', left:15, top:15,alignSelf:'center',width:200}}>
+                      <View style={{width: 100, height: 50,let:20}} >
+                                <Button  onPress={()=> this.clickSubmit()}>
+                                        Submit
+                                </Button> 
+              
+                      </View> 
+              
+                   {/* <View style={{width:5, height: 50,}} >
+                      
+                                  <Text style={{color:'#fff'}}>|</Text>
+                   </View> */}
+                  
+                     <View style={{width: 100, height: 50}} >
+                          <Button  onPress={()=> this.closeModal()}>
+                               Cancel
+                          </Button>     
+                     </View>
+                    </View>
+                <Button
+                    onPress={() => this.closeModal()}
+                    title="Close modal"
+                >
+                </Button>
+              </View>
+            </View>
+          </Modal>
+          <Button
+              onPress={() => this.openModal()}
+              title="Open modal"
+          />
+        </View>
+        </View>
+
     );
   }
 }
@@ -153,7 +233,6 @@ const styles = StyleSheet.create({
     top:90,
     alignSelf:'center',
     
-
   },
   fixing:{
     alignSelf:'center',
@@ -161,8 +240,15 @@ const styles = StyleSheet.create({
   //  fontSize: 50,
    top:50
     
-  }
- 
-
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: '#d7dee8',
+  },
   
 });

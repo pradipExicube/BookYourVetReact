@@ -56,29 +56,29 @@ async componentDidMount() {
      
       //<Login />
       //  <Landing />
-      this.state.fontLoaded ? (
+    //   this.state.fontLoaded ? (
       
-        <Modal/>
-     ):null
-      
-    //  this.state.fontLoaded ? (
-      
-    //    <Router>
-    //    <Stack key="root">
-       
-    //    <Scene key="Landing" component={Landing} />
-    //    <Scene key="Signup" component={Signup}  />
-    //    <Scene key="Login" component={Login} />
-    //    <Scene key="Home" component={Home} />
-    //    <Scene key="PetConsult" component={PetConsult} />
-    //    <Scene key="ListPage" component={ListPage} />
-    //    <Scene key="BookAppointment" component={BookAppointment} />
-    //    <Scene key="AnimalRegister" component={AnimalRegister} />
-    //    <Scene key="PastConsult" component={PastConsult} />
-    //    <Scene key="Reminder" component={Reminder} />
-    //    </Stack>
-    //  </Router>
+    //     <Modal/>
     //  ):null
+      
+     this.state.fontLoaded ? (
+      
+       <Router>
+       <Stack key="root">
+       
+       <Scene key="Landing" component={Landing} />
+       <Scene key="Signup" component={Signup}  />
+       <Scene key="Login" component={Login} />
+       <Scene key="Home" component={Home} />
+       <Scene key="PetConsult" component={PetConsult} />
+       <Scene key="ListPage" component={ListPage} />
+       <Scene key="BookAppointment" component={BookAppointment} />
+       <Scene key="AnimalRegister" component={AnimalRegister} />
+       <Scene key="PastConsult" component={PastConsult} />
+       <Scene key="Reminder" component={Reminder} />
+       </Stack>
+     </Router>
+     ):null
 
     );
   }

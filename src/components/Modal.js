@@ -1,58 +1,43 @@
-import React, { Component } from 'react';
-import { Text, View, Button, Modal, StyleSheet } from 'react-native';
+import React from 'react';
+import Modal from 'react-native-simple-modal';
+import {AppRegistry, Text, TouchableOpacity, View} from 'react-native';
 
-export default class MyComponent extends Component {
-  state = {
-    modalVisible: false,
-  };
-
-  openModal() {
-    this.setState({modalVisible:true});
-  }
-
-  closeModal() {
-    this.setState({modalVisible:false});
-  }
-
+export default class Example extends React.Component {
+  state = {open: false};
   render() {
     return (
-        <View style={styles.container}>
-          <Modal
-              visible={this.state.modalVisible}
-              animationType={'slide'}
-              onRequestClose={() => this.closeModal()}
-          >
-            <View style={styles.modalContainer}>
-              <View style={styles.innerContainer}>
-                <Text>This is content inside of modal component</Text>
-                <Button
-                    onPress={() => this.closeModal()}
-                    title="Close modal"
-                >
-                </Button>
-              </View>
-            </View>
-          </Modal>
-          <Button
-              onPress={() => this.openModal()}
-              title="Open modal"
-          />
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <TouchableOpacity onPress={() => this.setState({open: true})}>
+        <Text>Forget Password</Text>
+      </TouchableOpacity>
+      <Modal
+        offset={this.state.offset}
+        open={this.state.open}
+        modalDidOpen={() => console.log('modal did open')}
+        modalDidClose={() => this.setState({open: false})}
+        style={{alignItems: 'center'}}>
+        <View>
+          <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
+          <TouchableOpacity
+          style={{margin: 5}}
+          onPress={() => this.setState({offset: -100})}>
+            <Text>Move modal up</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{margin: 5}}
+            onPress={() => this.setState({offset: 0})}>
+            <Text>Reset modal position</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{margin: 5}}
+            onPress={() => this.setState({open: false})}>
+            <Text>Close modal</Text>
+          </TouchableOpacity>
         </View>
+      </Modal>
+    </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'grey',
-  },
-  innerContainer: {
-    alignItems: 'center',
-  },
-});
+AppRegistry.registerComponent('ExampleModal', () => Example);
