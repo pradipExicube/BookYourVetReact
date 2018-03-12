@@ -7,7 +7,6 @@ import {Actions} from 'react-native-router-flux';
 import { StackNavigator } from "react-navigation";
 import * as firebase from 'firebase';
 
-
 export default class Signup extends React.Component {
     static navigationOptions = {
        
@@ -23,10 +22,8 @@ export default class Signup extends React.Component {
       hpnumber:'',
       address:'',
       password:'',
-    }
-   
+    } 
   }
-  
   clickSubmit(){
       console.log("hiii");
       if(this.state.name=="" || this.state.username=="" || this.state.email=="" || this.state.icnumber=="" || this.state.hpnumber=="" || this.state.address=="" || this.state.password=="" ||
@@ -47,12 +44,9 @@ export default class Signup extends React.Component {
                 alert("please input your address");
             }else if(this.state.password=="" || this.state.password==undefined){
                 alert("please input your password");
-            }
-           
-           
+            }  
         }
-       
-         
+        
          else{
              console.log("else part working");
 
@@ -79,22 +73,12 @@ export default class Signup extends React.Component {
     .catch((error)=>{
         alert("successfully registered")
     }); 
-
-
-            // firebase.auth().createUserWithEmailAndPassword(this.state.email,this.state.password).then((newUser) =>{
-            //     console.log("hello");
-            //     console.log(newUser);
-            // firebase.database().ref('/Doctors/' + newUser.uid + '/').set(data)
-
-            // })
-            // .catch((error)=>{
-            //     alert(error)
-            // }); 
-
-   
+         
  }
 
 } 
+
+
     
   render() {
 
@@ -103,8 +87,8 @@ export default class Signup extends React.Component {
             <View style={styles.titleView}>
                 <Text style={styles.titleViewText}>Sign Up</Text>
 
-                <View style={styles.imageView}>
-                    <Image
+                <View style={styles.imageView} >
+                    <Image  
                         styleName="small"
                         source={require('../assets/img/logo.png')}
                     />

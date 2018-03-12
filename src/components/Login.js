@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity, Modal} from 'react-native';
- import { Examples } from '@shoutem/ui';
- import { Font } from 'expo';
- import { Input,Button} from '../components/common';
- import { Image} from '@shoutem/ui';
+import { Examples } from '@shoutem/ui';
+import { Font, FileSystem } from 'expo';
+import { Input,Button} from '../components/common';
+import { Image} from '@shoutem/ui';
 import { Actions } from 'react-native-router-flux';
 import * as firebase from 'firebase';
-
- import { Router, Scene } from 'react-native-router-flux';
+import { ImagePicker,Permissions} from 'expo';
+import { Router, Scene } from 'react-native-router-flux';
+import b64 from 'base64-js'
 export default class Login extends React.Component {
     static navigationOptions = {
      
@@ -21,6 +22,7 @@ export default class Login extends React.Component {
           email:'',
           modalVisible: false,
           enterMail:'',
+          image: null,
         }
     }
   
@@ -31,7 +33,6 @@ export default class Login extends React.Component {
     closeModal() {
       this.setState({modalVisible:false});
     }
-
 
     gotoSignup(){
       Actions.Signup();
@@ -78,9 +79,91 @@ passwordAlert(msg,status){
       
       }
     }
+    // async componentWillMount() {
+    //   const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    //   this.setState({ permissionsGranted: status === 'granted' });
+    // }
+    // async componentDidMount(){
+    //   FileSystem.makeDirectoryAsync(FileSystem.documentDirectory + 'photos').catch(e =>{
+    //     console.log(e,'Directory exists');
+    //   });
+
+    // }
+// picUpload=async function () {
+//      if(this.camera){
+//       // let result = await ImagePicker.launchImageLibraryAsync();
+//        this.camera.takePictureAsync().then(data =>{
+//          FileSystem.moveAsync({
+//            from:data.uri,
+//            to: `${FileSystem.documentDirectory}photos/Photo_${this.state.photoId}.jpg`,
+//           }).then(() => {
+//             this.setState({
+//             photoId: this.state.photoId + 1,
+
+//          });
+//          Vibration.vibrate();
+//         });
+//       });
+//     }
+//   };
+
+    uploadPic = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        base64: true,
+        allowsEditing: true,
+        aspect: [4, 3],
+      });
+      // console.log(result);  
+
+      if (result && result[0]) {
+        var FR= new FileReader();
+        FR.addEventListener(function(e) {
+        document.getElementById().src= e.target.result;
+        document.getElementById().innerHTML= e.target.result;
+  }); 
+  console.log(e.target.result)
+  FR.readAsDataURL( this.files[0] );
+}
    
-    
+      try {
+        var metadata = {
+          contentType: 'image/jpg',
+        };
+        var storageRef = firebase.storage().ref();
+        var uploadTask = storageRef.child('/images/').put(result.base64, metadata);
+        console.log(result);
+        
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
+          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+  
+        }, function (error) {
+          console.log( error)
+        }, function () {
+          var downloadURL = uploadTask.snapshot.downloadURL;
+          console.log( uploadTask.snapshot.downloadURL)
+        });
+  
+  
+      } catch (ee) {
+        console.log("when trying to load _uploadAsByteArray ", ee)
+      }
+    }
+
+           
+  //   uploadPic =async function takeAndUploadPhotoAsync() {
+  //     const result = await ImagePicker.launchCameraAsync({
+  //         base64: true
+  //     })
+  //    const byteArray = b64.toByteArray(result.base64)
+  //   //  console.log(byteArray);
+  //    const metadata = {contentType: 'image/jpg'}; 
+  //    firebase.storage().ref('/images').child('my_pic.jpg').put(byteArray, metadata).then(snapshot => {
+  //        console.log("uploaded image!")
+  //    })
+  // }
   render() {
+    let { image } = this.state;
     return (
       <View>
   <View  style={styles.mainView}>
@@ -89,10 +172,12 @@ passwordAlert(msg,status){
   </View>
       
    <View style={styles.imageView}>
-                    <Image
+   <TouchableOpacity  onPress={()=>this.uploadPic()}>
+                    <Image 
                         styleName="medium-square"
                         source={require('../assets/img/logo.png')}
                       />
+                      </TouchableOpacity>
    </View>
  <View style={styles.inputView}>
         <Input 
@@ -133,34 +218,6 @@ passwordAlert(msg,status){
             
   </View>
   
-  {/* <View>
-       <Modal
-            offset={this.state.offset}
-            open={this.state.open}
-            modalDidOpen={() => console.log('modal did open')}
-            modalDidClose={() => this.setState({open: false})}
-            style={{alignItems: 'center'}}>
-<View>
-     <Text style={{fontSize: 20, marginBottom: 10}}>Hello world!</Text>
-     <TouchableOpacity
-             style={{margin: 5}}
-             onPress={() => this.setState({offset: -100})}>
-               <Text>Move modal up</Text>
-     </TouchableOpacity>
-       <TouchableOpacity
-                 style={{margin: 5}}
-                 onPress={() => this.setState({offset: 0})}>
-                 <Text>Reset modal position</Text>
-         </TouchableOpacity>
-         <TouchableOpacity
-                   style={{margin: 5}}
-                   onPress={() => this.setState({open: false})}>
-                   <Text>Close modal</Text>
-         </TouchableOpacity>
-</View>
-</Modal>
-</View> */}
-
 
 </View>
 <View style={styles.container}>
@@ -252,3 +309,6 @@ const styles = StyleSheet.create({
   },
   
 });
+
+
+
