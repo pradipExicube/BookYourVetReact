@@ -14,11 +14,12 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import Reminder from './src/components/Reminder';
  import PicUpload from './src/components/PicUpload'
 //  import DoctorsPage from './src/components/DoctorsPage';
-//  import Card from './src/components/Card';
+ import Card from './src/components/Card';
 //  import Modal from './src/components/Modal';
  import Camera from './src/components/Camera';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux';
  import firebase from "firebase";
+// import { Card } from '@shoutem/ui/components/Card';
 
 export default class App extends React.Component {
   componentWillMount(){
@@ -57,29 +58,28 @@ async componentDidMount() {
      
       //<Login />
       //  <Landing />
-      this.state.fontLoaded ? (
-      
-        <Camera/>
-     ):null
-      
-    //  this.state.fontLoaded ? (
-      
-    //    <Router>
-    //    <Stack key="root">
-       
-    //    <Scene key="Landing" component={Landing} />
-    //    <Scene key="Signup" component={Signup}  />
-    //    <Scene key="Login" component={Login} />
-    //    <Scene key="Home" component={Home} />
-    //    <Scene key="PetConsult" component={PetConsult} />
-    //    <Scene key="ListPage" component={ListPage} />
-    //    <Scene key="BookAppointment" component={BookAppointment} />
-    //    <Scene key="AnimalRegister" component={AnimalRegister} />
-    //    <Scene key="PastConsult" component={PastConsult} />
-    //    <Scene key="Reminder" component={Reminder} />
-    //    </Stack>
-    //  </Router>
+    //   this.state.fontLoaded ? (
+    //     <AnimalRegister/>
     //  ):null
+      
+     this.state.fontLoaded ? (
+      
+       <Router>
+       <Stack key="root">
+       
+       <Scene key="Landing" component={Landing} />
+       <Scene key="Signup" component={Signup}  />
+       <Scene key="Login" component={Login} />
+       <Scene key="Home" component={Home} />
+       <Scene key="PetConsult" component={PetConsult} />
+       <Scene key="ListPage" component={ListPage} />
+       <Scene key="BookAppointment" component={BookAppointment} />
+       <Scene key="AnimalRegister" component={AnimalRegister} />
+       <Scene key="PastConsult" component={PastConsult} />
+       <Scene key="Reminder" component={Reminder} />
+       </Stack>
+     </Router>
+     ):null
 
     );
   }

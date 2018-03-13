@@ -39,10 +39,6 @@ componentWillMount(){
       }
     })
 
-
-
-
-
     var firebaseData= firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/');
     firebaseData.on('value',(snap2)=>{
         if(snap2.val()){
@@ -53,7 +49,6 @@ componentWillMount(){
         }
       })
     }
-
 
       gotoLanding(){
           Actions.Landing();
@@ -80,9 +75,6 @@ componentWillMount(){
                             </Divider>
                             {/*end Divider*/}
                             {/*start Image*/}
-                           
-                           
-                            
                             {/*end Image*/}
                         </View>
                     </View>

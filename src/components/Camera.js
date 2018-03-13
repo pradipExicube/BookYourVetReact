@@ -11,11 +11,12 @@ export default class ImagePickerExample extends React.Component {
       aspect: [4, 3],
     });
     console.log("result is"); 
-     console.log(result.base64); 
+    //  console.log(result.base64); 
 
     this.uploadimage(result.base64)
     };
     uploadimage(imageUrl){
+      // console.log(imageUrl);
       var metadata = {
         contentType: 'image/jpg',
       };
@@ -71,7 +72,6 @@ alert("hello");*/
           title="Pick an image from camera roll"
           onPress={this.pickImage}
         />
-      
       </View>
     );
   }

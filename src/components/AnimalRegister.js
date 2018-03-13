@@ -4,10 +4,8 @@ import {Divider,Card,Subtitle, Image, Caption,Row , ImageBackground,Tile,Title,D
 import {Button, Input} from '../components/common'; 
 import {Actions} from 'react-native-router-flux';
 import { Router, Scene } from 'react-native-router-flux';
+import { ImagePicker } from 'expo';
 import * as firebase from 'firebase';
-
-
- 
 
 export default class AnimalRegister extends React.Component {
     
@@ -23,7 +21,7 @@ export default class AnimalRegister extends React.Component {
           breed:'',
           dateofbirth:'',
           otherinfo:'',
-         
+          picture:''
         }
        
       }
@@ -82,12 +80,70 @@ export default class AnimalRegister extends React.Component {
             }
             
     }
-
-    
     cancelClick(){
         Actions.pop();
     }
+   
+    pickImage = async () => {
+        currentPerson=firebase.auth().currentUser;
+            let result = await ImagePicker.launchImageLibraryAsync({
+                
+              allowsEditing: true,
+               base64:true,
+              aspect: [4, 3],
+            }); 
+            console.log(result);
+            this.setState({picture:result.uri});
+            firebase.database().ref('/users/' + firebase.auth().currentUser.uid  + '/mypets/').push(result);   
 
+            alert("successfully submitted")
+        
+    }
+    componentWillMount(){
+    var firebaseData= firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/');
+    firebaseData.on('value',(snap3)=>{
+        if(snap3.val()){
+            if(snap3.val().name){
+              var name = snap3.val().name;
+              this.setState({name:name});
+            }         
+        }
+      })
+
+      var allPets=[];
+      var ref =  firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/mypets/');
+      ref.on('value',(snapshot)=>{
+        if(snapshot.val()){
+            var data = snapshot.val();
+            for(let key in data){
+                data[key].petid = key;
+                allPets.push(data[key]);
+            }
+            this.setState({allData:allPets});  
+        }
+      })
+
+    //   var firebaseImage=firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/mypets/');
+     
+    //   firebaseImage.on('value',(snapshot)=> {
+    //     console.log("hi");
+    //       console.log(snapshot.val());
+    //       console.log("hello");
+    //     if(snapshot.val()){
+    //          var picture=snapshot.val();
+    //          for(let key in data){
+    //              data[key].petid=key;
+    //              allPets.push(data[key]);
+    //          }
+          
+    //         this.setState({allData:allPets},()=>{console.log(allData);});
+        
+    //       }
+
+    //   })
+
+}
+//}
   render() {
     let data = [{
         value: 'Male',
@@ -102,21 +158,28 @@ export default class AnimalRegister extends React.Component {
                 <Divider styleName="section-header" style={{height:70}}>
                                 <View style={{flex: 1, flexDirection: 'column'}}>
                                 <Caption style={{fontFamily:'ColabReg', fontSize:17}}>Welcome,</Caption>
-                                <Caption style={{fontFamily:'ColabReg', fontSize:14}}>Pradip647</Caption>
+                                <Caption style={{fontFamily:'ColabReg', fontSize:14}}>{this.state.name}</Caption>
                                 </View>
                                 <TouchableOpacity  onPress={()=> this.logOut()} >
                                 <Caption style={{fontFamily:'ColabReg', fontSize:18}}>Logout</Caption>
                                 </TouchableOpacity>
                             
-             </Divider>
+                </Divider>
 
     </View>
     <View>
                  <View style={styles.imageView}>
-                    <Image
+                 <TouchableOpacity  onPress={this.pickImage} >
+                 
+                        
+                       <Image
                          styleName="medium-avatar"
-                        source={require('../assets/img/logo.png')}
+
+                        source={{ uri:this.state.picture ? this.state.picture:null}}
                       />
+                  
+                   
+                      </TouchableOpacity>
                  </View>
 
    </View>
@@ -186,6 +249,9 @@ const styles = StyleSheet.create({
   },
   imageView:{
       top:50,
-      alignSelf:'center'
+      alignSelf:'center',
+      borderRadius:10,
+      borderWidth:1,
+      borderColor:'#fff'
     }
 });
