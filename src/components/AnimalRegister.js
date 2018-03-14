@@ -93,9 +93,9 @@ export default class AnimalRegister extends React.Component {
               aspect: [4, 3],
             }); 
             console.log(result);
-            this.setState({picture:result.uri});
+            
             firebase.database().ref('/users/' + firebase.auth().currentUser.uid  + '/mypets/').push(result);   
-
+            this.setState({picture:result.uri});
             alert("successfully submitted")
         
     }
@@ -174,11 +174,8 @@ export default class AnimalRegister extends React.Component {
                         
                        <Image
                          styleName="medium-avatar"
-
                         source={{ uri:this.state.picture ? this.state.picture:null}}
                       />
-                  
-                   
                       </TouchableOpacity>
                  </View>
 

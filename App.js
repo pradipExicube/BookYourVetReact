@@ -20,6 +20,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native';
  import {Router, Route, Schema, Animations, TabBar,Stack,Scene, Actions} from 'react-native-router-flux';
  import firebase from "firebase";
 // import { Card } from '@shoutem/ui/components/Card';
+import { Asset, AppLoading } from 'expo';
 
 export default class App extends React.Component {
   componentWillMount(){

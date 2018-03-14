@@ -8,7 +8,6 @@ import *as firebase from 'firebase';
 
  
 export default class ListPage extends React.Component {
-  
   static navigationOptions = {
     header: null,
   };
@@ -16,7 +15,7 @@ export default class ListPage extends React.Component {
       super(props)
       this.state={
         name:'',
-        
+        picture:'',
         allData:[]
       }; 
   }
@@ -38,6 +37,7 @@ export default class ListPage extends React.Component {
             this.setState({allData:allPets});
             //console.log( this.state.allData)
         }
+
       })
 
       var reff =  firebase.database().ref('/users/' + firebase.auth().currentUser.uid + '/');

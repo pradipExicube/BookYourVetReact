@@ -7,6 +7,7 @@ import { StyleSheet, Text, View,TextInput,Dimensions,TouchableOpacity} from 'rea
  import Landing from '../components/Landing';
  import BookAppointment from '../components/BookAppointment';
  import Reminder from '../components/Reminder';
+//  import { Asset} from 'expo';
  
 //  import { Router, Scene } from 'react-native-router-flux';
 
@@ -15,6 +16,10 @@ export default class Home extends React.Component {
        
         header: null,
       };
+      // state = {
+      //   isReady: false,
+      // };
+
       gotoLanding(){
           Actions.Landing();
       }
@@ -28,6 +33,8 @@ export default class Home extends React.Component {
             Actions.Reminder();
           }
   render() {
+    
+
     return (
         <View  style={styles.mainView}>
    
@@ -95,17 +102,12 @@ export default class Home extends React.Component {
          
 
     </View>
-
-
-
-
-
-
  </View>
     
     );
   }
-}
+  }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
